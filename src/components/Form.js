@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Error from './Error';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 
-const Form = () => {
+const Form = ({setGasto, setCrearGasto}) => {
 
     const [nombre, setNombre] = useState('');
     const [cantidad, setCantidad] = useState(0);
@@ -24,8 +25,10 @@ const Form = () => {
             id: shortid.generate(),
         }
 
-        console.log(gasto);
-
+        setGasto(gasto);
+        setCrearGasto(true);
+        setNombre('');
+        setCantidad(0);
 
     }
 
@@ -66,6 +69,11 @@ const Form = () => {
             />
         </form>
     )
+}
+
+Form.propTypes = {
+    setGasto: PropTypes.func.isRequired,
+    setCrearGasto: PropTypes.func.isRequired
 }
 
 export default Form
